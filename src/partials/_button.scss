@@ -1,0 +1,35 @@
+@mixin btn($background-color, $color, $bold) {
+	align-items: center;
+	background-color: $background-color;
+	border-radius: 50px;
+	color: $color;
+	display: flex;
+	justify-content: center;
+	padding: 20px 30px;
+	text-align: center;
+
+	@if ($bold == 'true') {
+		font-weight: bolder;
+	}
+}
+
+@mixin btn-transition {
+	transition: background-color 300ms ease-out, color 300ms ease-out;
+}
+
+.btn {
+	@include btn-transition();
+
+	&.btn-cta {
+		@include btn($primary-color, $secondary-color, 'true');
+		&:hover {
+			@include btn($secondary-color, $terciary-color, 'true');
+			box-shadow: $box-shadow;
+		}
+	}
+
+	&:hover {
+		@include btn($terciary-color, $secondary-color, 'true');
+		box-shadow: $box-shadow;
+	}
+}
